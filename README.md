@@ -26,7 +26,7 @@ To install the Chromatica Shopify Theme v1.3.1, follow these simple steps:
 
 ```bash
 # Clone Repository
-git clone https://github.com/your-username/Chromatica-shopify-theme-1.3.1.git
+git clone https://github.com/samkaypro/Chromatica-shopify-theme-1.3.1.git
 Alternatively, you can download the ZIP file from the GitHub repository and extract it to your desired location.
 
 Upload Theme Files: Log in to your Shopify admin dashboard and navigate to the "Online Store" section.
@@ -76,5 +76,5 @@ This theme is licensed under the MIT License.
 
 ---
 
-Thank you for choosing the Chromatica Shopify Theme v1.3.1! We're excited to see your bag store thrive online. If you have any questions or need further assistance, don't hesitate to contact us. Happy selling!
+Thank you for choosing the Chromatica Shopify Theme v1.3.1! 
 
