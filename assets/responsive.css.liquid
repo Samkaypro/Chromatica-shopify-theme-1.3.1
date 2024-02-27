@@ -1,0 +1,687 @@
+/***********************************************************
+
+1. CSS RESET
+
+2. VARIABLES
+2.1 GRADIENTS
+2.2 CSS3 TRANSITIONS
+
+3. GLOBAL THEME STYLES
+
+4. TYPOGRAPHY
+4.1 HEADINGS
+4.2 PARAGRAPHS & LISTS
+4.3 LINKS
+4.4 PRODUCT ATTRIBUTES (name, description, price)
+4.5 RTE
+
+5. FORMS & COMPONENTS
+5.2 ALERTS
+5.3 BUTTONS
+
+6. GLOBAL PAGE LAYOUT
+
+7. SIDEBAR CONFIGURATION
+
+8. MAIN PAGE
+8.1 HEADER
+8.2 NAVIGATION
+8.3 NIVOSLIDER
+8.4 SHOWCASE
+8.5 MAIN PRODUCT LISTING
+8.6 FOOTER
+
+9. COLLECTION PAGES
+9.1 PAGES CONTENT
+9.2 BREADCRUMBS
+9.3 COLLECTION LISTING
+9.4 PAGINATION
+
+10. SIDEBAR WIDGETS
+10.1 LINKS LIST
+10.2 SIDEBAR PRODUCT LISTING
+
+11. SEARCH RESULTS PAGE
+
+12. PRODUCT PAGE
+12.1 PRODUCT IMAGES
+12.2 PRODUCT INFO
+12.3 PRODUCT PAGINATION
+12.4 RELATED PRODUCTS
+
+13. BLOG
+13.1 POSTS LISTING
+13.2 SINGLE POST
+
+14. CUSTOMER PAGES
+14.1 LOG IN
+14.2 ACCOUNT
+14.3 ADDRESSES
+14.4 ORDERS
+
+15. CART PAGE
+15.1 CART PRODUCTS
+15.2 GUEST CHECKOUT
+
+16. CONTACTS PAGE
+
+***********************************************************/
+
+
+
+/* 1200px ***************************************************************************/
+
+@media (min-width: 1200px) {
+	
+/* 8.2 NAVIGATION */
+#navigation.isStuck nav {
+	height: 60px;
+}
+.pseudoStickyBlock {
+	max-height: 60px !important;
+}
+
+#navigation.isStuck #logo {
+	padding: 4px 0 0 0;
+}
+#navigation.isStuck #logo a span {
+	font-weight: 300;
+	font-size: 33px;
+}
+
+#navigation.isStuck .sf-menu > li {
+	line-height: 60px;
+}
+
+#navigation.isStuck .sf-menu ul {
+	top: 60px;
+}
+
+}
+
+
+
+/* < 1200px ***************************************************************************/
+
+@media (max-width: 1199px) {
+	
+/* 8.1 HEADER */
+ .header_user li ~ li {
+	margin: 0 0 0 20px;
+}
+
+
+
+/* 8.2 NAVIGATION */
+#navigation.isStuck nav {
+	height: 60px;
+}
+.pseudoStickyBlock {
+	max-height: 60px !important;
+}
+
+#navigation.isStuck #logo {
+	padding: 4px 0 0 0;
+}
+#navigation.isStuck #logo a span {
+	font-weight: 300;
+	font-size: 33px;
+}
+
+#navigation.isStuck .sf-menu > li {
+	line-height: 60px;
+}
+
+#navigation.isStuck .sf-menu ul {
+	top: 60px;
+}
+
+
+
+/* 8.3 NIVOSLIDER */
+.slider_container {
+	width: 970px;
+}
+.nivo-caption h2 {
+	padding: 135px 0 0 0;
+	font-size: 70px;
+}
+.nivo-caption h3 {
+	padding: 20px 0 0 0;
+	font-size: 40px;
+}
+.nivo-controlNav {
+	bottom: 30px;
+}
+
+
+
+/* 8.4 SHOWCASE */
+.custom_showcase a div {
+	padding: 0 20px 0 250px;
+}
+.custom_showcase h3 {
+	margin: -43px 0 0 0;
+	font-size: 45px;
+	line-height: 45px;
+}
+.custom_showcase h4 {
+	font-size: 45px;
+	line-height: 45px;
+}
+
+
+
+
+/* 8.6 FOOTER */
+.custom_bottom1 .fb-like-box {
+	width: 285px !important;
+}
+
+
+
+/* 8.5 MAIN PRODUCT LISTING */
+
+/* 10.2 SIDEBAR PRODUCT LISTING */
+.product_listing_sidebar .product {
+	text-align: center;
+}
+.product_listing_sidebar .product_img {
+	width: auto;
+	float: none;
+}
+.product_listing_sidebar .product_info {
+	margin: 0;
+}
+.product_listing_sidebar .product_name {
+	margin: 15px 0 0 0;
+}
+
+
+
+/* 12.2 PRODUCT INFO */
+.product_wrap #bx-pager a {
+	width: 84px;
+}
+
+}
+
+
+
+/* < 980px ***************************************************************************/
+
+@media (max-width: 992px) {
+	
+/* 8.1 HEADER */
+
+/* 8.2 NAVIGATION */
+#navigation.isStuck {
+	position: relative !important;
+	left: auto;
+	right: auto;
+}
+.pseudoStickyBlock {
+	display: none !important;
+}
+
+#navigation nav {
+	height: 112px !important;
+}
+
+#navigation .mobile_menu {
+	width: 300px;
+	float: right;
+}
+
+#navigation #logo {
+	padding: 32px 0 0 0;
+}
+#navigation #logo a span {
+	font-weight: 300;
+	font-size: 33px;
+}
+
+#navigation {
+}
+#navigation .jq-selectbox {
+	margin: 36px 0 0 0;
+}
+#navigation .jq-selectbox__select {
+	height: 40px;
+	padding: 0 40px 0 12px;
+	background: {{ settings.color_3 }};
+}
+#navigation .jq-selectbox__select-text {
+	width: 100% !important;
+	font-size: 15px;
+	line-height: 38px;
+	color: {{ settings.color_1 }};
+}
+#navigation .jq-selectbox__trigger i {
+	color: {{ settings.color_1 }};
+	right: 14px;
+	top: 13px;
+}
+
+#navigation .jq-selectbox__dropdown {
+	background: {{ settings.color_3 }};
+	top: 40px !important;
+}
+#navigation .jq-selectbox__dropdown ul {
+	background: {{ settings.color_3 }};
+}
+#navigation .jq-selectbox__dropdown ul li {
+	padding: 4px 12px;
+	background: {{ settings.color_3 }};
+	border-top: 1px solid {{ settings.color_2 }};
+	color: {{ settings.color_1 }};
+	-webkit-box-shadow: inset 0 0 0 0 rgba(0,0,0,0.3);
+	        box-shadow: inset 0 0 0 0 rgba(0,0,0,0.3);
+	{{ trans_fast }}
+}
+
+#navigation .jq-selectbox__dropdown ul li:hover,
+#navigation .jq-selectbox__dropdown ul li.sel {
+	-webkit-box-shadow: inset 0 0 0 400px rgba(0,0,0,0.3);
+	        box-shadow: inset 0 0 0 400px rgba(0,0,0,0.3);
+	}
+
+
+
+/* 8.3 NIVOSLIDER */
+.slider_container {
+	width: 750px;
+}
+.nivo-caption h2 {
+	padding: 105px 0 0 0;
+	font-size: 65px;
+}
+.nivo-caption h3 {
+	padding: 20px 0 0 0;
+	font-size: 25px;
+}
+
+
+
+/* 8.4 SHOWCASE */
+.custom_showcase a div {
+	padding: 0 20px 0 190px;
+}
+.custom_showcase h3 {
+	margin: -35px 0 0 0;
+	font-size: 35px;
+	line-height: 35px;
+}
+.custom_showcase h4 {
+	font-size: 35px;
+	line-height: 35px;
+}
+
+
+
+/* 8.6 FOOTER */
+
+/* 8.5 MAIN PRODUCT LISTING */
+
+/* 10.2 SIDEBAR PRODUCT LISTING */
+
+/* 12.1 PRODUCT IMAGES */
+.product_image-additioanl {
+	width: 229px !important;
+}
+
+
+
+/* 12.2 PRODUCT INFO */
+.product_wrap #bx-pager a {
+	width: 61px;
+}
+
+}
+
+
+
+/* < 767px ***************************************************************************/
+
+@media (max-width: 767px) {
+	
+/* 6. GLOBAL PAGE LAYOUT */
+.container {
+	padding:0 15px;
+}
+
+.column_left,
+.column_right,
+.column_center,
+#main_content {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+
+
+/* 8.1 HEADER */
+#logo {
+	float: none;
+	text-align: center;
+}
+#logo a {
+	display: inline-block;
+}
+
+
+
+/* 8.2 NAVIGATION */
+#navigation nav {
+	height: auto !important;
+	padding: 15px 0;
+}
+
+#navigation #logo {
+	padding: 5px 0 0 0;
+}
+
+#navigation .mobile_menu {
+	width: 100%;
+	float: none;
+	margin: 25px 0 0 0;
+}
+
+
+
+/* 8.3 NIVOSLIDER */
+.slider_container {
+	width: 100%;
+}
+.slider_wrap {
+	margin: 0;
+}
+.nivo-caption {
+	padding: 0 20px;
+	top: 50%;
+}
+.nivo-caption h2 {
+	margin: -35px 0 0 0;
+	padding: 0;
+	font-size: 40px;
+}
+.nivo-caption h3 {
+	padding: 10px 0 0 0;
+	font-size: 20px;
+}
+
+.nivo-controlNav {
+	display: none !important;
+}
+
+
+/* 8.4 SHOWCASE */
+.custom_showcase {
+	margin: 15px 0 0 0;
+}
+.custom_showcase a div {
+	padding: 0 20px 0 54%;
+}
+.custom_showcase h3 {
+	margin: -28px 0 0 0;
+	font-size: 30px;
+	line-height: 30px;
+}
+.custom_showcase h4 {
+	font-size: 30px;
+	line-height: 30px;
+}
+
+
+
+/* 8.6 FOOTER */
+#bottom {
+	margin-bottom: 0;
+}
+#bottom .container {
+	padding: 0 15px 25px 15px;
+	-webkit-box-shadow: inset 0 -1px 0 0 rgba(255,255,255,0.25);
+	        box-shadow: inset 0 -1px 0 0 rgba(255,255,255,0.25);
+	}
+
+.custom_footer h3 {
+	padding: 25px 0 0 0;
+}
+
+
+
+/* 8.5 MAIN PRODUCT LISTING */
+.product_listing_main .product {
+	margin: 15px 0 0 0;
+	text-align: left;
+}
+.product_listing_main .product > div {
+	overflow: hidden;
+}
+.product_listing_main .product ~ .product > div {
+	padding: 15px 0 0 0;
+	border-top: 1px solid {{ settings.border_color }};
+}
+
+.product_listing_main .product_img {
+	width: 100px;
+	float: left;
+}
+
+.product_listing_main .product_info {
+	margin: 0 0 0 115px;
+}
+
+.product_listing_main .product_name {
+	margin: -4px 0 0 0;
+	padding: 0;
+}
+
+.product_listing_main .product_price {
+}
+
+
+
+/* 10.2 SIDEBAR PRODUCT LISTING */
+.product_listing_sidebar .product {
+	text-align: left;
+}
+.product_listing_sidebar .product_img {
+	width: 80px;
+	float: left;
+}
+.product_listing_sidebar .product_info {
+	margin: 0 0 0 95px;
+}
+.product_listing_sidebar .product_name {
+	margin: -4px 0 0 0;
+}
+
+
+
+/* 12.1 PRODUCT IMAGES */
+.product_wrap .product_image {
+	width: 400px;
+}
+.product_image-additioanl {
+	width: 415px !important;
+	overflow: hidden;
+}
+.product_wrap #bx-pager a {
+	width: 123px;
+	margin-right: 16px;
+}
+.product_wrap #bx-pager a ~ a {
+	margin-right: 15px;
+}
+
+
+
+/* 12.2 PRODUCT INFO */
+.product_wrap .product_name {
+	margin: 0;
+	padding: 30px 0 0 0;
+}
+
+
+
+/* 15. CART PAGE */
+.cart_buttons {
+	text-align: center;
+}
+.cart_buttons span.or {
+	display: block;
+	margin: 5px 0;
+}
+
+}
+
+
+
+/* < 640px ***************************************************************************/
+
+@media (max-width: 640px) {
+	
+/* 8.1 HEADER */
+.header_user {
+	float: none;
+	text-align: center;
+}
+.header_user li {
+	display: inline-block;
+	float: none;
+}
+
+.header_search {
+	float: none;
+	margin: 0;
+}
+.header_search > i.fa-search {
+	display: none !important;
+}
+.header_search form {
+	width: 100% !important;
+	height: 40px !important;
+	display: block !important;
+	position: relative;
+	right: auto;
+	top: auto;
+}
+
+.header_currency {
+	float: left;
+}
+
+
+
+/* 8.2 NAVIGATION */
+#logo a span {
+	font-size: 40px;
+}
+
+
+
+/* 8.4 SHOWCASE */
+.custom_showcase a div {
+}
+.custom_showcase h3 {
+	margin: -28px 0 0 0;
+	font-size: 25px;
+	line-height: 25px;
+}
+.custom_showcase h4 {
+	font-size: 25px;
+	line-height: 25px;
+}
+
+}
+
+
+
+/* < 540px ***************************************************************************/
+
+@media (max-width: 540px) {
+	
+
+
+}
+
+
+
+/* < 480px ***************************************************************************/
+
+@media (max-width: 480px) {
+	
+/* 8.3 NIVOSLIDER */
+.nivo-caption {
+	display: none !important;
+}
+
+
+
+/* 8.4 SHOWCASE */
+.custom_showcase {
+	width: 100%;
+	float: none;
+}
+.custom_showcase a {
+	display: block;
+	position: relative;
+}
+.custom_showcase a div {
+}
+.custom_showcase h3 {
+	margin: -33px 0 0 0;
+	font-size: 33px;
+	line-height: 33px;
+}
+.custom_showcase h4 {
+	font-size: 33px;
+	line-height: 33px;
+}
+
+
+
+/* 8.5 MAIN PRODUCT LISTING */
+.product_listing_main .product_desc {
+	display: none;
+}
+
+
+
+/* 12.1 PRODUCT IMAGES */
+.product_wrap .product_image {
+	width: 290px;
+}
+.product_image-additioanl {
+	width: 306px !important;
+}
+.product_wrap #bx-pager a {
+	width: 87px;
+	margin-right: 15px;
+}
+
+
+
+/* 14.2 ACCOUNT */
+.customer_name .divider {
+	display: none;
+}
+.customer_name .email {
+	display: block;
+}
+.customer_name a {
+	float: none;
+}
+
+}
+
+
+
+/* < 340px ***************************************************************************/
+
+@media (max-width: 340px) {
+	
+
+
+}

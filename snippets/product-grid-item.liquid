@@ -1,0 +1,74 @@
+{% if template == 'index' %}
+    {% if settings.homepage_listing_cols == '2' %}
+    {% cycle 'step2' : '<div class="product_listing_main"><div class="row">', '' %}
+    {% elsif settings.homepage_listing_cols == '3' %}
+    {% cycle 'step3' : '<div class="product_listing_main"><div class="row">', '', '' %}
+    {% elsif settings.homepage_listing_cols == '4' %}
+    {% cycle 'step4' : '<div class="product_listing_main"><div class="row">', '', '', '' %}
+    {% endif %}
+{% else %}
+    {% if settings.collection_listing_cols == '2' %}
+    {% cycle 'step2' : '<div class="product_listing_main"><div class="row">', '' %}
+    {% elsif settings.collection_listing_cols == '3' %}
+    {% cycle 'step3' : '<div class="product_listing_main"><div class="row">', '', '' %}
+    {% elsif settings.collection_listing_cols == '4' %}
+    {% cycle 'step4' : '<div class="product_listing_main"><div class="row">', '', '', '' %}
+    {% endif %}
+{% endif %}
+
+{% comment %}Is this product on sale?{% endcomment %}
+{% assign on_sale = false %}
+{% if product.compare_at_price > product.price %}
+  {% assign on_sale = true %}
+{% endif %}
+
+<div class="product {% if template == 'index' %}{% if settings.homepage_listing_cols == '2' %}col-sm-6{% elsif settings.homepage_listing_cols == '3' %}col-sm-4{% elsif settings.homepage_listing_cols == '4' %}col-sm-3{% endif %}{% else %}{% if settings.collection_listing_cols == '2' %}col-sm-6{% elsif settings.collection_listing_cols == '3' %}col-sm-4{% elsif settings.collection_listing_cols == '4' %}col-sm-3{% endif %}{% endif %}">
+<div>
+
+<div class="product_img">  
+    <a href="{{ product.url | within: collection }}">
+    	<img src="{{ product.featured_image.src | product_img_url: image_size }}" alt="{{ product.featured_image.alt | escape }}" />
+    </a>
+</div>
+
+<div class="product_info">
+    <div class="product_name">
+        <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+    </div>
+{% if template == 'index' %}
+    <div class="product_desc product_desc_short">{{ product.description | strip_html | truncate: 35 }}</div>
+{% else %}
+    <div class="product_desc product_desc_long">{{ product.description | strip_html | truncate: 120 }}</div>
+{% endif %}
+    <div class="product_price">
+        {% if product.price_varies %}From{% endif %}
+        <span class="money">{{ product.price | money }}</span>
+        {% if on_sale %}
+        <span class="money compare-at-price">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+    </div>
+    {% include "snippet-add-to-cart" %}         
+</div>
+  
+</div>
+</div>
+
+{% if template == 'index' %}
+    {% if settings.homepage_listing_cols == '2' and forloop.last == false %}
+    {% cycle 'step22' : '', '</div></div>' %}
+    {% elsif settings.homepage_listing_cols == '3' and forloop.last == false %}
+    {% cycle 'step33' : '', '', '</div></div>' %}
+    {% elsif settings.homepage_listing_cols == '4' and forloop.last == false %}
+    {% cycle 'step44' : '', '', '', '</div></div>' %}
+    {% endif %}
+{% else %}
+    {% if settings.collection_listing_cols == '2' and forloop.last == false %}
+    {% cycle 'step22' : '', '</div></div>' %}
+    {% elsif settings.collection_listing_cols == '3' and forloop.last == false %}
+    {% cycle 'step33' : '', '', '</div></div>' %}
+    {% elsif settings.collection_listing_cols == '4' and forloop.last == false %}
+    {% cycle 'step44' : '', '', '', '</div></div>' %}
+    {% endif %}
+{% endif %}
+
+{% if forloop.last %}</div></div>{% endif %}

@@ -1,0 +1,429 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->  
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    {% if page_description %}
+    <meta name="description" content="{{ page_description }}" />
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+    {% if template == 'index' %}
+    <title>{{ shop.name }} | {{ page_title }}</title>
+    {% elsif template == '404' %}
+    <title>Page Not Found | {{ shop.name }}</title>
+    {% else %}
+    <title>{{ page_title }} | {{ shop.name }}</title>
+    {% endif %}
+
+    <link rel="canonical" href="{{ canonical_url }}" />
+  	<link href="{{ 'favicon.ico' | asset_url }}" rel="shortcut icon" type="image/x-icon" />
+    {{ content_for_header }}
+
+    {{ 'bootstrap.css' | asset_url | stylesheet_tag }} 
+    {{ 'assets.css' | asset_url | stylesheet_tag }} 
+    {{ 'style.css' | asset_url | stylesheet_tag }}
+    {{ 'responsive.css' | asset_url | stylesheet_tag }}
+    {{ 'font-awesome.css' | asset_url | stylesheet_tag }}
+
+	{{ settings.base_font_custom_code }}
+    {{ settings.heading_font_custom_code }}
+
+    <!--[if lt IE 9]>
+    {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
+    {{ 'ie8.css' | asset_url | stylesheet_tag }}
+    <![endif]-->
+
+    <!--[if IE 9]>
+    {{ 'ie9.css' | asset_url | stylesheet_tag }}
+    <![endif]-->
+
+    <!--[if gte IE 9]>
+    <style type="text/css">.gradient {filter: none;}</style>
+    <![endif]-->
+
+    {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+    {% endif %}
+
+    {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+    {{ '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' | script_tag }}  
+    {{ 'bootstrap.min.js'  | asset_url | script_tag }}
+    {{ 'jquery-migrate-1.2.1.min.js'  | asset_url | script_tag }}
+    {{ 'jquery.mobile.customized.min.js'  | asset_url | script_tag }}
+    {{ 'shop.js'  | asset_url | script_tag }}
+    {{ 'jquery.easing.1.3.js'  | asset_url | script_tag }}
+    {{ 'api.jquery.js' | asset_url | script_tag }}
+    {{ 'ajaxify-shop.js' | asset_url | script_tag }}
+    {{ 'hoverIntent.js' | asset_url | script_tag }}
+    {{ 'superfish.js' | asset_url | script_tag }}
+    {{ 'supersubs.js' | asset_url | script_tag }}
+    {{ 'sftouchscreen.js' | asset_url | script_tag }}
+    {{ 'jquery.fancybox-1.3.4.js' | asset_url | script_tag }}
+    {{ 'jquery.bxslider.min.js' | asset_url | script_tag }}
+    {{ 'jquery.nivoslider.js'  | asset_url | script_tag }}
+  	{{ 'tm-stick-up.js' | asset_url | script_tag }}
+  	{{ 'jquery.formstyler.min.js' | asset_url | script_tag }}
+    {% include 'snippet-currencies' %}
+
+</head>
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+
+<!-- Facebook like box code -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+{% comment %}Shopify does not support Internet Explorer 6.{% endcomment %}
+<!--[if lt IE 7]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<![endif]-->
+
+<div id="wrapper">
+<div id="wrapper2">
+
+<!-- HEADER -->
+<header id="header">
+<div class="container">
+
+    {% if shop.customer_accounts_enabled %}
+    <!-- USER MENU -->
+    <ul class="header_user">
+    {% if customer %}
+    <li><a href="/account"><i class="fa fa-user"></i>{{ customer.first_name | truncate:15 }}</a>    </li>
+    <li>{{ 'Log out' | customer_logout_link }}</li>
+    {% else %}
+        <li>{{ 'Log in' | customer_login_link }}</li>
+        {% if shop.customer_accounts_optional %}
+        <li>{{ 'Create an account' | customer_register_link }}</li>
+        {% endif %}
+    {% endif %}
+    <li class="checkout"><a href="/cart">Check out</a></li>
+    </ul>
+    {% endif %}
+
+    <!-- HEADER SEARCH -->
+    <div class="header_search">
+      	<i class="fa fa-search"></i>
+        <form class="search-form" action="/search" method="get" role="search">
+        <input id="search-field" name="q" type="text" placeholder="Search store..." class="hint" />
+        <button id="search-submit" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+
+    <!-- HEADER CART -->
+	<div class="header_cart"><a href="/cart"><span class="cart-total-items"><span class="count">{{ cart.item_count }}</span></span><i class="fa fa-shopping-cart"></i></a></div>
+
+    <!-- CURRENCIES -->
+    {% if settings.show_multiple_currencies %}
+    {% include 'widget-currencies-switcher' %}
+    {% endif %}
+
+</div>
+</header>
+
+<!-- NAVIGATION -->
+<div id="navigation">
+<div class="container">
+<nav role="navigation">
+    <!-- LOGO -->
+    <div id="logo">
+		<a href="/">{% if settings.use_logo %}{{ 'logo.png' | asset_url | img_tag: shop.name }}{% else %}{{ shop.name }}{% endif %}</a>
+    </div>
+
+    <ul class="sf-menu visible-md visible-lg">
+        {% for link in linklists.main-menu.links %}
+        {% if linklists[link.handle] == empty %}
+        <li class="{% if link.active %} active{% endif %}">
+            <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+        {% else %}
+        <li class="{% if link.active %} active{% endif %}">
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            <ul class="dropdown">
+            {% for l in linklists[link.handle].links %}
+            <li{% if l.active %} class="active"{% endif %}><a href="{{ l.url }}"{% if l.active %} class="current"{% endif %}>{{ l.title }}</a></li>
+            {% endfor %}
+            </ul>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% assign found_active_link = false %}
+    <select name="main_navigation" id="mobile_menu" class="mobile_menu visible-xs visible-sm">
+      {% for link in linklists.main-menu.links %}
+        {% if link.active %}
+        <option value="{{ link.url }}" selected="selected">{{ link.title }}</option>
+        {% assign found_active_link = true %}
+        {% else %}
+        <option value="{{ link.url }}">{{ link.title }}</option>
+        {% endif %}
+        {% for childlink in linklists[link.handle].links %}
+          {% if childlink.active %}
+          <option value="{{ childlink.url }}" selected="selected">- {{ childlink.title }}</option>
+          {% assign found_active_link = true %}
+          {% else %}
+          <option value="{{ childlink.url }}">- {{ childlink.title }}</option>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      {% unless found_active_link %}
+      <option value="" selected="selected">{{ page_title }}</option>
+      {% endunless %}
+    </select>
+</nav>
+</div>
+</div>
+
+<!-- SHOWCASE CUSTOM BLOCKS -->
+{% if template == 'index' %}
+{% include 'widget-nivoslider' %}
+<div id="showcase">
+<div class="container">
+<div class="row">
+    <div class="col-xs-6 custom_showcase custom_showcase1">
+        <a href="{{ settings.custom_showcase1_link }}">
+        {% if settings.custom_showcase1_img_toggle %}<img src="{{ 'custom_showcase1_img.jpg' | asset_url }}" />{% endif %}
+        <div>
+            <h3>{{ settings.custom_showcase1_text1 }}</h3>
+            <h4>{{ settings.custom_showcase1_text2 }}</h4>
+        </div>
+        </a>
+    </div>
+    <div class="col-xs-6 custom_showcase custom_showcase2">
+        <a href="{{ settings.custom_showcase2_link }}">
+		{% if settings.custom_showcase2_img_toggle %}<img src="{{ 'custom_showcase2_img.jpg' | asset_url }}" />{% endif %}
+        <div>
+            <h3>{{ settings.custom_showcase2_text1 }}</h3>
+            <h4>{{ settings.custom_showcase2_text2 }}</h4>
+        </div>
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 custom_showcase custom_showcase3">
+        <a href="{{ settings.custom_showcase3_link }}">
+        {% if settings.custom_showcase3_img_toggle %}<img src="{{ 'custom_showcase3_img.jpg' | asset_url }}" />{% endif %}
+        <div>
+            <h3>{{ settings.custom_showcase3_text1 }}</h3>
+            <h4>{{ settings.custom_showcase3_text2 }}</h4>
+        </div>
+        </a>
+    </div>
+    <div class="col-xs-6 custom_showcase custom_showcase4">
+        <a href="{{ settings.custom_showcase4_link }}">
+        {% if settings.custom_showcase4_img_toggle %}<img src="{{ 'custom_showcase4_img.jpg' | asset_url }}" />{% endif %}
+        <div>
+            <h3>{{ settings.custom_showcase4_text1 }}</h3>
+            <h4>{{ settings.custom_showcase4_text2 }}</h4>
+        </div>
+        </a>
+    </div>
+</div>
+</div>
+</div>
+{% endif %}
+
+<!-- MAIN CONTENT -->
+<div id="main" role="main">
+<div class="container">
+
+{% if template != 'index' and settings.enable_breadcrumbs == 'true' %}
+{% include 'snippet-breadcrumbs' %}
+{% endif %}
+
+{% case template %}
+    {% when 'index' %}
+        {% assign width_sidebars = false %}
+    {% when 'page.homepage' %}
+        {% assign width_sidebars = false %}
+    {% when 'page.noasides' %}
+        {% assign width_sidebars = false %}
+    {% else %}
+        {% assign width_sidebars = true %}
+{% endcase %}
+
+{% if template contains 'customers' %}
+	{% assign width_sidebars = false %}
+{% endif %}
+
+    <div class="row {% if settings.enable_left_sidebar == true and settings.enable_right_sidebar == true %}sidebar_both{% elsif settings.enable_left_sidebar == true and settings.enable_right_sidebar == false %}sidebar_left{% elsif settings.enable_left_sidebar == false and settings.enable_right_sidebar == true %}sidebar_right{% else %}sidebar_none{% endif %} {% if template == 'index' or template contains 'customers' %}sidebar_off{% endif %}">
+
+    <div class="column_center">
+    <div id="main_content" class="col-sm-{% if settings.enable_left_sidebar == true and settings.enable_right_sidebar == true and width_sidebars == true %}6{% elsif settings.enable_left_sidebar == true and settings.enable_right_sidebar == false and width_sidebars == true %}9{% elsif settings.enable_left_sidebar == false and settings.enable_right_sidebar == true and width_sidebars == true %}9{% else %}12{% endif %}">
+    {% if template == 'list-collections' %}
+    {% include 'collection-listing' %}
+    {% else %}
+    {{ content_for_layout }}
+    {% endif %}
+    </div>
+    </div>
+
+    {% if settings.enable_left_sidebar and width_sidebars == true %}
+    <div class="column_left column col-sm-3">
+    {% include 'widget-collections' %}
+    {% include 'widget-types' %}
+    {% include 'widget-best-sellers' %}
+    </div>
+    {% endif %}
+
+    {% if settings.enable_right_sidebar and width_sidebars == true %}
+    <div class="column_right column col-sm-3">
+    {% include 'widget-collections' %}
+    {% include 'widget-types' %}
+    {% include 'widget-best-sellers' %}
+    </div>
+    {% endif %}
+
+	</div>
+
+</div>
+</div>
+
+{% if template == 'index' %}
+<!-- BOTTOM -->
+<div id="bottom">
+    <div class="container">
+    <div class="row">
+        <div class="custom_bottom custom_bottom1 col-sm-12 col-lg-4">
+            <h3>{{ settings.custom_bottom1_title }}</h3>
+            <div class="fb-like-box" data-href="{{ settings.custom_bottom1_link }}" data-height="200" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="true"></div>
+        </div>
+        <div class="custom_bottom custom_bottom2 col-sm-6 col-lg-4">
+            <h3>{{ settings.custom_bottom2_title }}</h3>
+            <div class="text_block text_block1">
+                <i class="fa {{ settings.font_icons1 }}"></i>
+                <p>{{ settings.custom_bottom2_text1 }}</p>
+            </div>
+            <div class="text_block text_block2">
+                <i class="fa {{ settings.font_icons2 }}"></i>
+                <p>{{ settings.custom_bottom2_text2 }}</p>
+            </div>
+            <div class="text_block text_block3">
+                <i class="fa {{ settings.font_icons3 }}"></i>
+                <p>{{ settings.custom_bottom2_text3 }}</p>
+            </div>
+        </div>
+        <div class="custom_bottom custom_bottom3 col-sm-6 col-lg-4">
+            <h3>{{ settings.custom_bottom3_title }}</h3>
+            <h4>{{ settings.custom_bottom3_tagline }}</h4>
+            <p>{{ settings.custom_bottom3_text }}</p>
+        </div>
+    </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- FOOTER -->
+<footer id="footer">
+<div class="container">
+	<div class="row">
+
+	    <div class="col-sm-2 custom_footer custom_footer1">
+		    <h3>{{ settings.custom_footer1_title }}</h3>
+		    <ul class="list">
+              {% for link in linklists[settings.custom_footer1_list].links limit:7 %}
+		        <li {% if link.active %}class="active"{% endif %}>{{ link.title | link_to: link.url }}</li>
+		        {% endfor %}
+		    </ul>
+	    </div>
+
+	    <div class="col-sm-2 custom_footer custom_footer2">
+		    <h3>{{ settings.custom_footer2_title }}</h3>
+		    <ul class="list">
+		        {% for link in linklists[settings.custom_footer2_list].links limit:7 %}
+		        <li {% if link.active %}class="active"{% endif %}>{{ link.title | link_to: link.url }}</li>
+		        {% endfor %}
+		    </ul>
+	    </div>
+
+	    <div class="col-sm-2 custom_footer custom_footer3">
+		    <h3>{{ settings.custom_footer3_title }}</h3>
+		    <ul class="list">
+		        {% for link in linklists[settings.custom_footer3_list].links limit:7 %}
+		        <li {% if link.active %}class="active"{% endif %}>{{ link.title | link_to: link.url }}</li>
+		        {% endfor %}
+		    </ul>
+	    </div>
+
+	    <div class="col-sm-3 custom_footer custom_footer4">
+		    <h3>{{ settings.custom_footer4_title }}</h3>
+		    <ul>
+		        {% if settings.custom_footer_twitter != blank %}<li><a href="{{ settings.custom_footer_twitter }}">Twitter</a></li>{% endif %}
+		        {% if settings.custom_footer_facebook != blank %}<li><a href="{{ settings.custom_footer_facebook }}">Facebook</a></li>{% endif %}
+		        {% if settings.custom_footer_youtube != blank %}<li><a href="{{ settings.custom_footer_youtube }}">Youtube</a></li>{% endif %}
+		        {% if settings.custom_footer_instagram != blank %}<li><a href="{{ settings.custom_footer_instagram }}">Instagram</a></li>{% endif %}
+		        {% if settings.custom_footer_pinterest != blank %}<li><a href="{{ settings.custom_footer_pinterest }}">Pinteresrt</a></li>{% endif %}
+		        {% if settings.custom_footer_googleplus != blank %}<li><a href="{{ settings.custom_footer_googleplus }}">Google+</a></li>{% endif %}
+		        {% if settings.custom_footer_tumblr != blank %}<li><a href="{{ settings.custom_footer_tumblr }}">Tumblr</a></li>{% endif %}
+		    </ul>
+	    </div>          
+
+	    <div class="col-sm-3 custom_footer custom_footer5">
+		    <h3>{{ settings.custom_footer5_title }}</h3>
+		    <ul>
+		        {% if settings.custom_footer_company != blank %}<li>{{ settings.custom_footer_company }}</li>{% endif %}
+		        {% if settings.custom_footer_address != blank %}<li>{{ settings.custom_footer_address }}</li>{% endif %}
+              	{% if settings.custom_footer_phone != blank %}<li>Call us now toll free: {{ settings.custom_footer_phone }}</li>{% endif %}
+              	{% if settings.custom_footer_email != blank %}<li>Email: <a href="mailto:{{ settings.custom_footer_email }}">{{ settings.custom_footer_email }}</a></li>{% endif %}
+		    </ul>
+	    </div>
+
+	</div>
+
+	<p class="copyright" role="contentinfo">&copy; {{ "now" | date: "%Y" }} {{ shop.name }}. All Rights Reserved. {% if settings.show_copyright %}Design by <a href="//templatemonster.com">TemplateMonster.com</a>.{% endif %} {{ powered_by_link }}.</p><!-- Design by templatemonster.com -->
+
+</div>
+</footer>
+
+</div><!-- / #wrapper2 -->
+</div><!-- / #wrapper -->
+
+<!-- custom selects -->
+<script type="text/javascript">
+(function($) {  
+$(function() {  
+  $('.header_currency select, #navigation select').styler();
+  $('.jq-selectbox__trigger').append('<i class="fa fa-angle-down"></i>');
+})  
+})(jQuery)  
+</script>
+
+<!-- currencies selector -->
+{% include 'snippet-currencies' %}
+
+<!-- olark code -->
+<script type="text/javascript" data-cfasync="false">// <![CDATA[
+/*<![CDATA[*/window.olark||(function(c){var f=window,d=document,l=f.location.protocol=="https:"?"https:":"http:",z=c.name,r="load";var nt=function(){
+f[z]=function(){
+(a.s=a.s||[]).push(arguments)};var a=f[z]._={
+},q=c.methods.length;while(q--){(function(n){f[z][n]=function(){
+f[z]("call",n,arguments)}})(c.methods[q])}a.l=c.loader;a.i=nt;a.p={
+0:+new Date};a.P=function(u){
+a.p[u]=new Date-a.p[0]};function s(){
+a.P(r);f[z](r)}f.addEventListener?f.addEventListener(r,s,false):f.attachEvent("on"+r,s);var ld=function(){function p(hd){
+hd="head";return["<",hd,"></",hd,"><",i,' onl' + 'oad="var d=',g,";d.getElementsByTagName('head')[0].",j,"(d.",h,"('script')).",k,"='",l,"//",a.l,"'",'"',"></",i,">"].join("")}var i="body",m=d[i];if(!m){
+return setTimeout(ld,100)}a.P(1);var j="appendChild",h="createElement",k="src",n=d[h]("div"),v=n[j](d[h](z)),b=d[h]("iframe"),g="document",e="domain",o;n.style.display="none";m.insertBefore(n,m.firstChild).id=z;b.frameBorder="0";b.id=z+"-loader";if(/MSIE[ ]+6/.test(navigator.userAgent)){
+b.src="javascript:false"}b.allowTransparency="true";v[j](b);try{
+b.contentWindow[g].open()}catch(w){
+c[e]=d[e];o="javascript:var d="+g+".open();d.domain='"+d.domain+"';";b[k]=o+"void(0);"}try{
+var t=b.contentWindow[g];t.write(p());t.close()}catch(x){
+b[k]=o+'d.write("'+p().replace(/"/g,String.fromCharCode(92)+'"')+'");d.close();'}a.P(2)};ld()};nt()})({
+loader: "static.olark.com/jsclient/loader0.js",name:"olark",methods:["configure","extend","declare","identify"]});
+/* custom configuration goes here (www.olark.com/documentation) */
+olark.identify('7830-582-10-3714');/*]]>*/
+  // ]]></script>
+<noscript><pre><a href="https://www.olark.com/site/7830-582-10-3714/contact" title="Contact us" target="_blank">Questions? Feedback?</a> powered by <a href="http://www.olark.com?welcome" title="Olark live chat software">Olark live chat software</a></pre></noscript>
+<!-- end olark code -->
+</body>
+</html>

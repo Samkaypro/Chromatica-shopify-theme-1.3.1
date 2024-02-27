@@ -1,0 +1,44 @@
+/************************************* NIVOSLIDER *************************************/
+
+.nivoSlider {width: 100%;height: auto;overflow: hidden;position: relative;z-index: 1;}
+.nivoSlider img {max-width: none;position: absolute;top: 0px;left: 0px;}
+.nivo-main-image {width: 100% !important;display: block !important;position: relative !important;}
+
+.nivoSlider a.nivo-imageLink {width: 100%;height: 100%;margin: 0;padding: 0;border: 0;position: absolute;top: 0;left: 0;z-index: 6;
+display: none;
+filter: alpha(opacity=0); 
+opacity: 0;
+}
+
+.nivo-slice {height: 100%;display: block;position: absolute;z-index: 5;top: 0;}
+.nivo-box {display: block;overflow: hidden;position: absolute;z-index: 5;}
+.nivo-box img {display: block;}
+
+.caption_hidden {display: none !important;}
+
+
+
+#slider_wrap {}
+
+#slider {}
+#slider > a {display: none;}
+
+.nivo-caption {width: 100%;overflow: hidden;background: #000;color: #fff;position: absolute;left: 0;bottom: 0;z-index: 8;
+display: none;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+.nivo-directionNav a {vertical-align: top;position: absolute;top: 45%;z-index: 9;cursor: pointer;}
+.nivo-directionNav a span {display: none;}
+.nivo-directionNav a i {display: inline-block;}
+.nivo-prevNav {left: 0;}
+.nivo-nextNav {right: 0;}
+
+.nivo-controlNav {}
+.nivo-controlNav a {vertical-align: top;cursor: pointer;}
+.nivo-controlNav a span {display: none;}
+.nivo-controlNav a i {display: inline-block;}
+.nivo-controlNav a:hover {}
+.nivo-controlNav a.active {}

@@ -1,0 +1,45 @@
+<div class="widget widget__newsletter">
+  <div class="widget_header">
+    {% if settings.mailing_list_title.size > 0 %}<h3>{{ settings.mailing_list_title }}</h3>{% endif %}
+  </div>
+  <div class="widget_content">
+  
+    <div id="mailing-list-module">
+      
+      {% if settings.mailing_list_tagline.size > 0 %}
+        <p>{{ settings.mailing_list_tagline }}</p>
+      {% endif %}
+
+      {% if settings.mailchimp_form_action.size > 0 %}
+      <form action="{{ settings.mailchimp_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form form-inline" target="_blank" role="form">
+        <div class="form-group">
+          <input type="email" placeholder="your@email.com" name="EMAIL" id="email-input" class="form-control" />
+        </div>
+        <input type="submit" class="btn btn-info styled-submit" value="Sign Up" name="subscribe" id="email-submit" />
+      </form>
+      {% else %}
+        {% form 'customer' %}        
+          {% if form.posted_successfully? %}
+            <p class="success feedback accent-text">Thank you for signing up!</p>
+          {% endif %}
+          {% if form.errors %}
+            <p class="error feedback accent-text">
+              {% for field in form.errors %}
+                {{ field }}{{ form.errors.messages[field] }}
+              {% endfor %}
+            </p>
+          {% endif %}       
+          <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter" />
+          <input type="hidden" id="newsletter-first-name" name="contact[first_name]" value="Subscriber" />
+          <input type="hidden" id="newsletter-last-name" name="contact[last_name]" value="Newsletter" />
+          <input type="email" placeholder="your@email.com" name="contact[email]" id="email-input" />
+          <input type="submit" class="btn styled-submit" value="Subscribe" name="subscribe" id="email-submit" />
+          {% if form.posted_successfully? or form.errors %}
+            <script>window.location.hash = '#mailing-list-module';</script>
+          {% endif %}
+        {% endform %} 
+      {% endif %}
+    </div>
+  </div>
+  
+</div>

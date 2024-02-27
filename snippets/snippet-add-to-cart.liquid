@@ -1,0 +1,30 @@
+<!-- 
+    This is just a regular add product form. 
+    You should be able to add any valid input fields to it 
+-->
+<form method="post" action="/cart/add">
+    <!-- We can leave this in, since the select comes later, 
+        so it will override if user picks something different. -->
+    {% for variant in product.variants limit:1 %}
+        <input type="hidden" name="id" value="{{ variant.id }}" />
+    {% endfor %}
+
+  	{% comment %}
+    <!-- If you don't want the variants dropdown, just comment this out. -->
+    {% if  product.variants.size > 1 %}    
+    <select name="id" id="id">{% for variant in product.variants %}{% if variant.available %}
+		<option value="{{ variant.id }}">{{ variant.title | escape }} ({{ variant.price | money }})</option>{% else %}
+		<option value="{{ variant.id }}" disabled="disabled">{{ variant.title | escape }} ({{ variant.price | money }}) - SOLD OUT</option>{% endif %}{% endfor %}
+	</select>
+    {% endif %}
+    <!-- end variants dropdown -->
+  	{% endcomment %}
+
+	<!-- START BUY -->
+	    {% if product.available %}		    
+		    <button class="btn btn-cart" type="submit"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+		{% else %}
+		    <h6>Sold Out</h6>
+		{% endif %}
+	<!-- END BUY -->
+</form>

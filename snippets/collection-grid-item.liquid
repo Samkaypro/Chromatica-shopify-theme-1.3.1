@@ -1,0 +1,42 @@
+{% comment %}If no value is passed to the snippet, we will set the snippet variable to a sensible default.{% endcomment %}
+
+{% if settings.collection_listing_cols == '2' %}
+{% cycle 'step2' : '<div class="row">', '' %}
+{% elsif settings.collection_listing_cols == '3' %}
+{% cycle 'step3' : '<div class="row">', '', '' %}
+{% elsif settings.collection_listing_cols == '4' %}
+{% cycle 'step4' : '<div class="row">', '', '', '' %}
+{% endif %}
+
+<div class="collection {% if settings.collection_listing_cols == '2' %}col-sm-6{% elsif settings.collection_listing_cols == '3' %}col-sm-4{% elsif settings.collection_listing_cols == '4' %}col-sm-3{% endif %}">
+  <div class="collection_img">  
+    <a href="{{ collection.url }}">
+      {% if collection.image %}
+        <img src="{{ collection.image.src | collection_img_url: 'medium' }}" alt="{{ collection.image.alt | escape }}" />
+      {% else %}
+        <img src="{{ collection.products.first.featured_image.src | product_img_url: 'medium' }}" alt="{{ collection.title | escape }}" />
+      {% endif %}
+    </a>
+  </div><!-- .coll-image-wrap -->
+
+  <div class="collection_info">
+      <h3 class="collection_title">
+        <a href="{{ collection.url }}">
+          {{ collection.title }}
+        </a>
+      </h3>
+      <span class="collection_items">
+        {{ collection.all_products_count }} {{ collection.all_products_count | pluralize:'item','items' }}
+      </span>    
+  </div><!-- .coll-caption -->  
+</div>
+
+{% if settings.collection_listing_cols == '2' and forloop.last == false %}
+{% cycle 'step22' : '', '</div>' %}
+{% elsif settings.collection_listing_cols == '3' and forloop.last == false %}
+{% cycle 'step33' : '', '', '</div>' %}
+{% elsif settings.collection_listing_cols == '4' and forloop.last == false %}
+{% cycle 'step44' : '', '', '', '</div>' %}
+{% endif %}
+
+{% if forloop.last %}</div>{% endif %}
